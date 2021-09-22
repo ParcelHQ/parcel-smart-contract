@@ -4,6 +4,7 @@ const package = require('./package')
 const mnemonic = process.env.MNEMONIC
 const matic_mnemonic = process.env.MATIC_MNEMONIC
 const token = process.env.INFURA_TOKEN
+const etherscan_api = process.env.ETHERSCAN_KEY
 
 module.exports = {
   networks: {
@@ -66,6 +67,7 @@ module.exports = {
         return new HDWalletProvider(matic_mnemonic, 'https://rpc-mainnet.maticvigil.com')
       },
       network_id: '137',
+      gasPrice: 25000000000, // 25 Gwei
     },
     maticTestnet: {
       provider: () => { 
@@ -87,5 +89,11 @@ module.exports = {
         }
       }
     }
+  },
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+  api_keys: {
+    etherscan: etherscan_api
   }
 };
