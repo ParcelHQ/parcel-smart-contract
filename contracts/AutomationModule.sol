@@ -162,6 +162,8 @@ contract AutomationModule is SignatureDecoder, Ownable {
     );
 
     constructor(address payable gelato, address gelatoPokeMe) {
+        require(gelato != address(0), "address invalid");
+        require(gelatoPokeMe != address(0), "address invalid");
         GELATO = gelato;
         GELATO_POKE_ME = gelatoPokeMe;
     }

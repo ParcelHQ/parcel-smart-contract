@@ -3,7 +3,7 @@ pragma solidity >=0.7.0 <0.8.0;
 pragma experimental ABIEncoderV2;
 
 import {Enum} from "./Enum.sol";
-import {GnosisSafe} from "./AllowanceModule.sol";
+import {GnosisSafe} from "./AutomationModule.sol";
 
 interface IAllowanceModule {
     struct Allowance {
@@ -49,6 +49,7 @@ contract Resolver {
     IAllowanceModule public immutable allowanceModule;
 
     constructor(address _allowanceModule) {
+        require(_allowanceModule != address(0), "address invalid");
         allowanceModule = IAllowanceModule(_allowanceModule);
     }
 
